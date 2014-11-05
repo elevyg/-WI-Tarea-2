@@ -1,0 +1,13 @@
+--Consulta para crear tabla de usuarios 
+CREATE TABLE users
+AS(
+SELECT DISTINCT CAST(REPLACE(CAST(json->'user'->'id_str' AS TEXT), '"', '') AS BIGINT) as Users_ID, 
+CAST(REPLACE(CAST(json->'user'->'name' AS TEXT), '"', '') AS TEXT) as Name,
+CAST(REPLACE(CAST(json->'user'->'screen_name' AS TEXT), '"', '') AS TEXT) as Screen_Name,
+CAST(REPLACE(CAST(json->'user'->'followers_count' AS TEXT), '"', '') AS INT) as Followers_Count,
+CAST(REPLACE(CAST(json->'user'->'friends_count' AS TEXT), '"', '') AS INT) as Friends_Count,
+CAST(REPLACE(CAST(json->'user'->'favourites_count' AS TEXT), '"', '') AS INT) as Favourites_Count
+FROM t2
+);
+
+--Poblar sin friends y despues join
