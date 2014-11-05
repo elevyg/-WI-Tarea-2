@@ -1,0 +1,10 @@
+--Consulta para crear tabla de tweets 
+CREATE TABLE tweets
+AS(
+SELECT DISTINCT CAST(REPLACE(CAST(json->'id' AS TEXT), '"', '') AS BIGINT) as Tweet_ID, 
+CAST(REPLACE(CAST(json->'text' AS TEXT), '"', '') AS TEXT) as Text,
+CAST(REPLACE(CAST(json->'retweet_count' AS TEXT), '"', '') AS INT) as Retweet_Count,
+CAST(REPLACE(CAST(json->'favorite_count' AS TEXT), '"', '') AS INT) as Fauvorite_Count,
+CAST(REPLACE(CAST(json->'user'->'id_str' AS TEXT), '"', '') AS BIGINT) as Users_ID
+FROM t2
+);
